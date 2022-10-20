@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>{{blocktitle}} {{endblock}}</title>
+</head>
+<body>
+
+    <h1>
+        <span class="letter">B</span>
+        <span class="letter">L</span>
+        <span class="letter">O</span>
+        <span class="letter">G</span>
+        <span class="letter">L</span>
+        <span class="letter">Y</span>
+    </h1>
+
+    {% block content %}
+    <h2>All users:</h2>
+    <ul>
+        {% for user in users %}
+        <li><a href="/{{user.id}}" class="users_list">{{user.first_name}} {{user.last_name}}</a></li>
+        {% endfor%}
+    </ul>
+
+    <a href="/add_user" class='other_page_link'>Add a new user</a>
+
+    {% endblock %}
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

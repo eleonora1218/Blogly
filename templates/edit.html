@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+{% block title %} Edit your profile {% endblock %} 
+
+{% block content %}
+
+<h2>Edit your information</h2>
+
+<form method="POST" id="add_user_form">
+    <input type="text" name='first_name' value="{{user.first_name}}">
+    <br>
+    <input type="text" name='last_name' value="{{user.last_name}}">
+    <br>
+    <input type="text" name='profile_img' value="{{user.profile_img}}">
+    <br>
+    <button class="Add_btn">Submit changes</button>
+</form>
+
+<a href="/{{user.id}}" class='other_page_link'>Back to profile</a>
+<br>
+<a href="/" class='other_page_link'>Back to homepage</a>
+
+{% endblock %}
+

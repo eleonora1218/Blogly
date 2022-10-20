@@ -1,0 +1,92 @@
+/* base / everypage */
+
+body {
+    /* Unsplash freesource image */
+    background-image: url('https://images.unsplash.com/photo-1586075010923-2dd4570fb338?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80');
+    margin: 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.letter {
+	transition: color 700ms;
+    padding: 0 5px;
+    margin: -3px;
+}
+.letter:nth-of-type(even) {
+    border: rgb(180, 85, 74) 3px solid;
+}
+
+.letter:nth-of-type(odd) {
+    border: rgb(53, 75, 56) 3px solid;
+}
+
+h2 {
+    color: rgb(180, 85, 74);
+    margin-bottom: 5px;
+}
+
+.other_page_link {
+    color: rgb(180, 85, 74);
+    text-decoration: none;
+}
+
+.other_page_link:hover {
+    color: rgb(53, 75, 56);
+}
+
+/* Homepage / list of users */
+
+.users_list {
+    color: rgb(53, 75, 56);
+    text-decoration: none;
+}
+
+.users_list:hover {
+    color: rgb(180, 85, 74);
+}
+
+/* Add a new user page */
+
+form {
+    margin-bottom: 10px;
+}
+
+input {
+    background-color: rgb(180, 85, 74);
+    color: azure;
+    margin: 10px;
+}
+
+::placeholder {
+    color: azure;
+    opacity: 0.5;
+}
+
+button {
+    margin: 10px;
+    background-color: rgb(180, 85, 74);
+    color: rgba(240, 255, 255, 0.5);
+}
+
+button:hover {
+    color: azure;
+}
+
+/* User details page */
+
+.profile_img {
+    width: 250px;
+}
+
+.edit_delete {
+    margin: 0 5px -10px 0;
+}
+
+img {
+    margin-top: auto;
+    width: 300px;
+}

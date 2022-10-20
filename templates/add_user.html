@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+{% block title %} New User {% endblock %} 
+
+{% block content %}
+
+<h2>Add a new user to the list:</h2>
+
+<section class="messages">
+    {% for category,msg in get_flashed_messages(with_categories=true) %}
+        <p class="category">{{msg}}</p>
+    {% endfor %}
+    </section>
+
+<form action="/" method="POST" id="add_user_form">
+    <input type="text" name='first_name' placeholder="First name">
+    <br>
+    <input type="text" name='last_name' placeholder="Last name">
+    <br>
+    <input type="text" name='profile_img' placeholder="Profile picture">
+    <br>
+    <button class="Add_btn">Add user</button>
+</form>
+
+<a href="/" class='other_page_link'>Back to homepage</a>
+
+{% endblock %}

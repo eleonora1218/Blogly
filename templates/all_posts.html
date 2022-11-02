@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+{% block title %} Posts {% endblock %} 
+
+{% block content %}
+
+
+<h2>All posts:</h2>
+
+<ol>
+    {% for post in posts %}
+    <li><a href="/post_details/{{post.id}}" class="list">{{post.title}}</a></li>
+    {% endfor %}
+</ol>
+<!-- <a href="/add_post" class='other_page_link'>Add a new post</a> -->
+<!-- <br> -->
+<a href="/" class='other_page_link'>Back to homepage</a>
+
+
+{% endblock %} 

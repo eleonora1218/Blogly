@@ -1,0 +1,30 @@
+{% extends 'base.html' %} 
+{% block title %} Posts {% endblock %} 
+
+{% block content %}
+
+
+<h2>{{post.title}}</h2>
+<h3>By {{post.user.user_name}}</h3>
+<blockquote>{{post.content}}</blockquote>
+
+<form>
+    <button formmethod='GET'
+    formaction="/{{post.id}}/edit"
+    class='edit_delete'>
+    Edit
+</button>
+
+<button formmethod="POST"
+formaction="/post_details/{{post.id}}/delete"
+class="edit_delete">
+Delete
+</button>
+</form>
+
+<!-- <a href="/add_post" class='other_page_link'>Add a new post</a>
+<br> -->
+<a href="/" class='other_page_link'>Back to homepage</a>
+
+
+{% endblock %} 

@@ -3,20 +3,22 @@
 
 {% block content %}
 
-<h2>Add a new user to the list:</h2>
+<h2>Add a new user:</h2>
 
 <section class="messages">
-    {% for category,msg in get_flashed_messages(with_categories=true) %}
-        <p class="category">{{msg}}</p>
+    {% for category, msg in get_flashed_messages(with_categories=true) %}
+        <p class="flash">{{msg}}</p>
     {% endfor %}
-    </section>
+</section>
 
 <form action="/" method="POST" id="add_user_form">
+    <input type="text" name='user_name' placeholder="Username">
+    <br>    
     <input type="text" name='first_name' placeholder="First name">
     <br>
     <input type="text" name='last_name' placeholder="Last name">
     <br>
-    <input type="text" name='profile_img' placeholder="Profile picture">
+    <input id='input3' type="text" name='profile_img' placeholder="Profile picture">
     <br>
     <button class="Add_btn">Add user</button>
 </form>

@@ -6,11 +6,13 @@
 <h2>Edit your information</h2>
 
 <form method="POST" id="add_user_form">
+    <input type="text" name='user_name' value="{{user.user_name}}">
+    <br>
     <input type="text" name='first_name' value="{{user.first_name}}">
     <br>
     <input type="text" name='last_name' value="{{user.last_name}}">
     <br>
-    <input type="text" name='profile_img' value="{{user.profile_img}}">
+    <input id='input3' type="text" name='profile_img' value="{{user.profile_img}}">
     <br>
     <button class="Add_btn">Submit changes</button>
 </form>

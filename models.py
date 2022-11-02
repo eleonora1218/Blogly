@@ -1,7 +1,7 @@
 """Models for Blogly."""
 
 from flask_sqlalchemy import SQLAlchemy
-
+from sqlalchemy.types import Boolean, Date, DateTime, Float, Integer, Text, Time, Interval
 db = SQLAlchemy()
 
 def connect_db(app):
@@ -10,11 +10,17 @@ def connect_db(app):
 
 
 class User(db.Model):
+    """Blog users who may have many posts"""
+
     __tablename__ = 'users'
 
     id = db.Column(db.Integer,
                     primary_key=True,
                     autoincrement=True)
+
+    user_name = db.Column(db.String(20),
+                            nullable=False,
+                            unique=True)
 
     first_name = db.Column(db.String(20),
                             nullable=False)
@@ -26,9 +32,37 @@ class User(db.Model):
                             nullable=True,
                             default='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg')
 
-    
     def __repr__(self):
         """Show user info"""
         u = self
-        return f'<User id={u.id}, first_name={u.first_name}, last_name={u.last_name}, profile_img={u.profile_img}>'
+        return f'<User id={u.id}, user_name={u.user_name}, first_name={u.first_name}, last_name={u.last_name}, profile_img={u.profile_img}>'
 
+
+class Post(db.Model):
+    """Posts on a blog by users"""
+
+    __tablename__ = 'posts'
+
+    id = db.Column(db.Integer,
+                    primary_key=True,
+                    autoincrement=True,
+                    unique=True)
+
+    post_user = db.Column(db.Text, 
+                            db.ForeignKey('users.user_name'))
+
+    title = db.Column(db.Text,
+                        nullable=False)
+
+    content = db.Column(db.Text,
+                        nullable=False)
+
+    created_at = db.Column(db.DateTime,
+                            nullable=True)
+
+    user = db.relationship('User', backref='Post')
+
+    def __repr__(self):
+        """Show post info"""
+        p = self
+        return f'<Post {p.id} {p.post_user} {p.title} {p.content} {p.created_at} >'

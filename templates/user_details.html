@@ -3,28 +3,31 @@
 
 {% block content %}
 
-    <h2>{{user.first_name}} {{user.last_name}}</h2>
-
-    <form>
-        <button formmethod='GET'
-                formaction="/{{user.id}}/edit"
-                class='edit_delete'>
+    <div class="user_details_info">
+        <h2>{{user.user_name}}</h2>
+        <h3>{{user.first_name}} {{user.last_name}}</h3>
+        <form>
+            <button formmethod='GET'
+                    formaction="/{{user.id}}/edit"
+                    class='edit_delete'>
                 Edit
         </button>
-
-        <button formmethod="POST"
-                formaction="/{{user.id}}/delete"
-                class="edit_delete">
+        
+            <button formmethod="POST"
+                    formaction="/{{user.id}}/delete"
+                    class="edit_delete">
                 Delete
-        </button>
-    </form>
-    
+            </button>
+        </form>
+        <img src="{{user.profile_img}}" class='profile_img'/>
+    </div>
+        
+
     <br>
-
-    <img src="{{user.profile_img}}" class='profile_img'/>
-
+    <a href="/{{user.id}}/post_details" class='other_page_link'>See {{user.user_name}}'s posts</a>
     <br>
-
+    <a href="/{{user.id}}/add_post" class='other_page_link'>Add a post</a>
+    <br>
     <a href="/" class='other_page_link'>Back to homepage</a>
 
 {% endblock %} 

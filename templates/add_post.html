@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+{% block title %} New User {% endblock %} 
+
+{% block content %}
+
+<h2>Add a new post for {{user.user_name}}:</h2>
+
+<section class="messages">
+    {% for category, msg in get_flashed_messages(with_categories=true) %}
+        <p class="flash">{{msg}}</p>
+    {% endfor %}
+</section>
+
+<form method="POST" id="add_user_form">
+    <input type="text" name='title' placeholder="Post title">
+    <br>    
+    <input id='input3' type="text" name='content' placeholder="Post content">
+    <br>
+    <button class="Add_btn">Add post</button>
+</form>
+
+<a href="/{{user.id}}" class='other_page_link'>Back to profile</a>
+<br>
+<a href="/" class='other_page_link'>Back to homepage</a>
+
+{% endblock %}

@@ -129,6 +129,10 @@ img {
 
 /* Post details */
 
-blockquote {
+blockquote, p {
+    color:rgb(53, 75, 56);
+}
+
+#add_post_form {
     color:rgb(53, 75, 56);
 }

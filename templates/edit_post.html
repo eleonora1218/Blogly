@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% block title %} Edit your profile {% endblock %} 
+
+{% block content %}
+
+<h2>Edit your post</h2>
+
+<section class="messages">
+    {% for category, msg in get_flashed_messages(with_categories=true) %}
+        <p class="flash">{{msg}}</p>
+    {% endfor %}
+</section>
+
+<form method="POST" id="add_post_form">
+    Title: <input id='input3' type="text" name='title' value="{{post.title}}">
+    <br>    
+    Content: <input id='input3' type="text" name='content' value="{{post.content}}">
+    <br>
+    <button class="Add_btn">Submit changes</button>
+</form>
+
+<a href="/" class='other_page_link'>Back to homepage</a>
+
+{% endblock %}
+

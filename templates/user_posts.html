@@ -1,0 +1,38 @@
+{% extends 'base.html' %} 
+{% block title %} {{user.user_name}}'s posts {% endblock %} 
+
+{% block content %}
+
+    <div class="user_details_info">
+        <h2>{{user.user_name}}'s posts</h2>
+
+
+    <ul>
+        {% for p in post %}
+        <li>
+            <h2>{{p.title}}</h2>
+            <p>Posted: {{p.display_date}}</p>
+            <blockquote>{{p.content}}</blockquote>
+            <form>
+                <button formmethod='GET'
+                formaction="/post_details/{{post.id}}/edit_post"
+                class='edit_delete'>
+                Edit
+            </button>
+            
+            <button formmethod="POST"
+            formaction="/post_details/{{post.id}}/delete"
+            class="edit_delete">
+            Delete
+            </button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+
+    <a href="/{{user.id}}/add_post" class='other_page_link'>Add a post</a>
+    <br>
+    <a href="/" class='other_page_link'>Back to homepage</a>
+
+{% endblock %} 

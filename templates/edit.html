@@ -5,6 +5,12 @@
 
 <h2>Edit your information</h2>
 
+<section class="messages">
+    {% for category, msg in get_flashed_messages(with_categories=true) %}
+        <p class="flash">{{msg}}</p>
+    {% endfor %}
+</section>
+
 <form method="POST" id="add_user_form">
     <input type="text" name='user_name' value="{{user.user_name}}">
     <br>

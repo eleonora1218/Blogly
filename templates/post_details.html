@@ -6,11 +6,13 @@
 
 <h2>{{post.title}}</h2>
 <h3>By {{post.user.user_name}}</h3>
+<p>Posted: {{post.display_date}}</p>
+
 <blockquote>{{post.content}}</blockquote>
 
 <form>
     <button formmethod='GET'
-    formaction="/{{post.id}}/edit"
+    formaction="/post_details/{{post.id}}/edit_post"
     class='edit_delete'>
     Edit
 </button>

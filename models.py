@@ -1,7 +1,8 @@
 """Models for Blogly."""
 
+import datetime
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.types import Boolean, Date, DateTime, Float, Integer, Text, Time, Interval
+# from sqlalchemy.types import Boolean, Date, DateTime, Float, Integer, Text, Time, Interval
 db = SQLAlchemy()
 
 def connect_db(app):
@@ -32,6 +33,8 @@ class User(db.Model):
                             nullable=True,
                             default='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg')
 
+    post = db.relationship('Post', backref='User')
+
     def __repr__(self):
         """Show user info"""
         u = self
@@ -58,7 +61,8 @@ class Post(db.Model):
                         nullable=False)
 
     created_at = db.Column(db.DateTime,
-                            nullable=True)
+                            nullable=False,
+                            default=datetime.datetime.now)
 
     user = db.relationship('User', backref='Post')
 
@@ -66,3 +70,8 @@ class Post(db.Model):
         """Show post info"""
         p = self
         return f'<Post {p.id} {p.post_user} {p.title} {p.content} {p.created_at} >'
+
+    @property
+    def display_date(self):
+        """Return nicely-formatted date."""
+        return self.created_at.strftime("%a %b %-d  %Y, %-I:%M %p")

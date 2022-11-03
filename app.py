@@ -32,6 +32,10 @@ def page_not_found(e):
     """Show 404 NOT FOUND page."""
     return render_template('404.html'), 404
 
+# USER ROUTES
+# USER ROUTES
+# USER ROUTES
+
 @app.route('/add_user')
 def add_user():
     """Form to add a new user"""
@@ -45,7 +49,7 @@ def add_new_user():
     last_name = request.form['last_name']
     profile_img = request.form['profile_img'] or None
 
-    if first_name == '' or last_name == '':
+    if user.user_name == '' or first_name == '' or last_name == '':
         flash ('This is not a valid name')
         return redirect('/add_user')
     else:
@@ -77,10 +81,13 @@ def edit_details(user_id):
     user.last_name = request.form['last_name']
     user.profile_img = request.form['profile_img'] or None
 
-    db.session.add(user)
-    db.session.commit()
-
-    return redirect(f'/{user.id}')
+    if user.user_name == '' or user.first_name == '' or user.last_name == '':
+        flash('This is not a valid name')
+        return redirect(f'/{user_id}/edit')
+    else:
+        db.session.add(user)
+        db.session.commit()
+        return redirect(f'/{user.id}')
 
 @app.route('/<int:user_id>/delete', methods=['POST'])
 def delete_user(user_id):
@@ -92,6 +99,10 @@ def delete_user(user_id):
 
     return redirect('/')
 
+# POST ROUTES
+# POST ROUTES
+# POST ROUTES
+
 @app.route('/all_posts')
 def all_posts():
     """View 100 recent posts"""
@@ -101,9 +112,7 @@ def all_posts():
 @app.route('/post_details/<int:post_id>')
 def posts_show(post_id):
     """Details about a particular post: title, author, content"""
-
     post = Post.query.get_or_404(post_id)
-    # user = User.query.all()
     return render_template('post_details.html', post=post)
 
 @app.route('/<int:user_id>/add_post')
@@ -124,21 +133,11 @@ def add_new_post(user_id):
         flash('Please fill in the title and content.')
         return redirect(f'/{user_id}/add_post')
     else:
-        # new_post = Post(title=request.form['title'], content=request.form['content'])
-        new_post = Post(title=title, content=content)
+        new_post = Post(title=title, content=content, user=user)
         db.session.add(new_post)
         db.session.commit()
 
-    return redirect(f"/{user_id}")
-
-# route: See all posts titles by a specific user.
-# route: Edit posts
-
-
-
-
-
-
+    return redirect('/')
 
 @app.route('/post_details/<int:post_id>/delete', methods=["POST"])
 def delete_post(post_id):
@@ -147,3 +146,35 @@ def delete_post(post_id):
     db.session.delete(post)
     db.session.commit()
     return redirect('/')
+
+@app.route('/post_details/<int:post_id>/edit_post')
+def edit_post(post_id):
+    """Form to edit posts"""
+    post = Post.query.get_or_404(post_id)
+    return render_template('edit_post.html', post=post)
+
+@app.route('/post_details/<int:post_id>/edit_post', methods=['POST'])
+def submit_edit(post_id):
+    """Handles submit changes to post button"""
+    post = Post.query.get_or_404(post_id)
+    user = post.user
+    post.title = request.form['title']
+    post.content = request.form['content']
+
+    if post.title == '' or post.content == '':
+        flash('Please fill in the title and content.')
+        return redirect(f'/post_details/{post_id}/edit_post')
+    else:
+        db.session.add(post)
+        db.session.commit()
+        return redirect('/')
+
+
+
+# route: See all posts titles by a specific user.
+@app.route('/<int:user_id>/user_posts')
+def see_users_posts(user_id):
+    """View all posts (title & date) made by a specific user"""
+    user = User.query.get_or_404(user_id)
+    post = user.post
+    return render_template('user_posts.html', post=post, user=user)

@@ -3,7 +3,6 @@
 from flask import Flask, request, render_template,  redirect, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User, Post
-# from sqlalchemy import desc 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
@@ -11,11 +10,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SECRET_KEY'] = 'bunniesarebest'
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
-debug = DebugToolbarExtension(app)
+# debug = DebugToolbarExtension(app)
 
 # flask refuses to run with db.create_all()
 app.app_context().push()
-
 connect_db(app)
 db.create_all()
 
@@ -38,7 +36,7 @@ def page_not_found(e):
 
 @app.route('/add_user')
 def add_user():
-    """Form to add a new user"""
+    """Form to create new user"""
     return render_template('add_user.html')
 
 @app.route('/', methods=['POST'])
@@ -49,7 +47,7 @@ def add_new_user():
     last_name = request.form['last_name']
     profile_img = request.form['profile_img'] or None
 
-    if user.user_name == '' or first_name == '' or last_name == '':
+    if user_name == '' or first_name == '' or last_name == '':
         flash ('This is not a valid name')
         return redirect('/add_user')
     else:
@@ -61,19 +59,19 @@ def add_new_user():
 
 @app.route('/<int:user_id>')
 def details(user_id):
-    """View user's details"""
+    """View user details"""
     user = User.query.get_or_404(user_id)
     return render_template('user_details.html', user=user)
 
 @app.route('/<int:user_id>/edit')
 def edit_page(user_id):
-    """Sends user to route to edit details"""
+    """Form to edit user details"""
     user = User.query.get_or_404(user_id)
     return render_template('/edit.html', user=user)
 
 @app.route('/<int:user_id>/edit', methods=['POST'])
 def edit_details(user_id):
-    """Allows user to edit their name & profile picture"""
+    """Edit user details"""
     user = User.query.get_or_404(user_id)
 
     user.user_name = request.form['user_name']
@@ -105,25 +103,26 @@ def delete_user(user_id):
 
 @app.route('/all_posts')
 def all_posts():
-    """View 100 recent posts"""
+    """View all posts"""
     posts = Post.query.order_by(Post.created_at).all()
     return render_template('all_posts.html', posts=posts)
 
 @app.route('/post_details/<int:post_id>')
 def posts_show(post_id):
-    """Details about a particular post: title, author, content"""
+    """View individual post. Accessed via homepage"""
     post = Post.query.get_or_404(post_id)
-    return render_template('post_details.html', post=post)
+    user = post.user
+    return render_template('post_details.html', post=post, user=user)
 
 @app.route('/<int:user_id>/add_post')
 def posts_new_form(user_id):
-    """Create a post form for a specific user"""
+    """Form to create a new post"""
     user = User.query.get_or_404(user_id)
     return render_template('add_post.html', user=user)
 
 @app.route('/<int:user_id>/add_post', methods=['POST'])
 def add_new_post(user_id):
-    """Handle form submission for creating a new post for a specific user"""
+    """Create a post form for a specific user"""
 
     user = User.query.get_or_404(user_id)
     title = request.form['title']
@@ -137,7 +136,7 @@ def add_new_post(user_id):
         db.session.add(new_post)
         db.session.commit()
 
-    return redirect('/')
+    return redirect(f'/{user.id}/user_posts')
 
 @app.route('/post_details/<int:post_id>/delete', methods=["POST"])
 def delete_post(post_id):
@@ -155,7 +154,7 @@ def edit_post(post_id):
 
 @app.route('/post_details/<int:post_id>/edit_post', methods=['POST'])
 def submit_edit(post_id):
-    """Handles submit changes to post button"""
+    """Submits edit to post"""
     post = Post.query.get_or_404(post_id)
     user = post.user
     post.title = request.form['title']
@@ -169,12 +168,22 @@ def submit_edit(post_id):
         db.session.commit()
         return redirect('/')
 
-
-
-# route: See all posts titles by a specific user.
 @app.route('/<int:user_id>/user_posts')
 def see_users_posts(user_id):
-    """View all posts (title & date) made by a specific user"""
+    """View all posts made by a specific user"""
     user = User.query.get_or_404(user_id)
     post = user.post
     return render_template('user_posts.html', post=post, user=user)
+
+
+# TAG ROUTES
+# TAG ROUTES
+# TAG ROUTES
+
+
+
+# BUGS TO FIX / FEATURES TO ADD
+# BUGS TO FIX / FEATURES TO ADD
+# BUGS TO FIX / FEATURES TO ADD
+
+

@@ -8,10 +8,16 @@ function randomRGB() {
     const g = num >> 10 & 90;
     const b = 90 & 200;
     return `rgb(${r},${g},${b})`
-}
+};
 
 const intervalId = setInterval(function() {
     for (let letter of letters) {
         letter.style.color = randomRGB();
     }
 }, 1200);
+
+// const deleteBTN = document.querySelectorAll('#deleteBTN');
+// deleteBTN.addEventListener('click', function(e) {
+//     evnt.preventDefault();
+//     alert ('Are you sure you want to delete?');
+// });

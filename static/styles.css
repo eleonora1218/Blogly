@@ -11,6 +11,10 @@ h1 {
     font-size: 50px;
 }
 
+a {
+    text-decoration: none;
+}
+
 .letter {
 	transition: color 700ms;
     padding: 0 5px;
@@ -36,7 +40,6 @@ h3 {
 
 .other_page_link {
     color: rgb(180, 85, 74);
-    text-decoration: none;
 }
 
 .other_page_link:hover {
@@ -59,7 +62,6 @@ ul {
 
 .list {
     color: rgb(53, 75, 56);
-    text-decoration: none;
 }
 
 .list:hover {
@@ -135,4 +137,32 @@ blockquote, p {
 
 #add_post_form {
     color:rgb(53, 75, 56);
+}
+
+#postdate {
+    font-size: 12px;
+    margin-top: -5px;
+}
+
+.postbox {
+    border: 1px rgb(180, 85, 74) dotted;
+    margin: auto auto 10px auto;
+    padding: 0 10px;
+}
+.postbox h2 {
+    margin: 10px;
+}
+
+.single_postbox {
+    border-top: 1px rgb(180, 85, 74) solid;
+    border-bottom: 1px rgb(180, 85, 74) solid;
+    margin: auto auto 10px auto;
+    padding: 0 10px;
+}
+.single_postbox h2 {
+    margin-top: 10px;
+}
+
+.username:hover {
+    color:rgb(180, 85, 74);
 }

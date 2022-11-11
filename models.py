@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 def connect_db(app):
+    """Connects db to provided Flask app"""
     db.app=app
     db.init_app(app)
 
@@ -33,10 +34,10 @@ class User(db.Model):
                             nullable=True,
                             default='https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg')
 
-    post = db.relationship('Post', backref='User')
+    post = db.relationship('Post', backref='User', cascade="all, delete-orphan")
 
     def __repr__(self):
-        """Show user info"""
+        """Show user info in nice format"""
         u = self
         return f'<User id={u.id}, user_name={u.user_name}, first_name={u.first_name}, last_name={u.last_name}, profile_img={u.profile_img}>'
 
@@ -64,7 +65,7 @@ class Post(db.Model):
                             nullable=False,
                             default=datetime.datetime.now)
 
-    user = db.relationship('User', backref='Post')
+    user = db.relationship('User', backref='Post', cascade="all,delete")
 
     def __repr__(self):
         """Show post info"""
@@ -75,3 +76,4 @@ class Post(db.Model):
     def display_date(self):
         """Return nicely-formatted date."""
         return self.created_at.strftime("%a %b %-d  %Y, %-I:%M %p")
+

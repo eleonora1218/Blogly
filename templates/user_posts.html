@@ -5,30 +5,35 @@
 
     <div class="user_details_info">
         <h2>{{user.user_name}}'s posts</h2>
+        <a href="/{{user.id}}" class='other_page_link'>Back to profile</a>
 
-
-    <ul>
-        {% for p in post %}
+        <ol>
+            {% for p in post %}
+            <div class="postbox">
         <li>
             <h2>{{p.title}}</h2>
-            <p>Posted: {{p.display_date}}</p>
+            <p id="postdate">Posted: {{p.display_date}}</p>
+
+
+
             <blockquote>{{p.content}}</blockquote>
             <form>
                 <button formmethod='GET'
-                formaction="/post_details/{{post.id}}/edit_post"
+                formaction="/post_details/{{p.id}}/edit_post"
                 class='edit_delete'>
                 Edit
-            </button>
-            
-            <button formmethod="POST"
-            formaction="/post_details/{{post.id}}/delete"
-            class="edit_delete">
-            Delete
-            </button>
+                </button>
+                
+                <button formmethod="POST"
+                formaction="/post_details/{{p.id}}/delete"
+                class="edit_delete">
+                Delete
+                </button>
             </form>
         </li>
+    </div>
         {% endfor %}
-    </ul>
+    </ol>
 
 
     <a href="/{{user.id}}/add_post" class='other_page_link'>Add a post</a>

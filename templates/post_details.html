@@ -3,10 +3,13 @@
 
 {% block content %}
 
-
+<div class="single_postbox">
 <h2>{{post.title}}</h2>
-<h3>By {{post.user.user_name}}</h3>
-<p>Posted: {{post.display_date}}</p>
+<!-- <h3>By {{post.user.user_name}}</h3> -->
+<a href="/{{user.id}}"><h3 class='username'>By {{post.user.user_name}}</h3></a>
+<p id="postdate">Posted: {{post.display_date}}</p>
+
+
 
 <blockquote>{{post.content}}</blockquote>
 
@@ -23,9 +26,12 @@ class="edit_delete">
 Delete
 </button>
 </form>
+</div>
 
-<!-- <a href="/add_post" class='other_page_link'>Add a new post</a>
+<!-- <a href="/{{user.id}}" class='other_page_link'>Go to {{post.user.user_name}}'s profile</a>
 <br> -->
+<a href="/{{user.id}}/user_posts" class='other_page_link'>View all {{post.user.user_name}}'s posts</a>
+<br>
 <a href="/" class='other_page_link'>Back to homepage</a>
 
 

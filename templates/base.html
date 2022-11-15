@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles.css">
-    <title>{{blocktitle}} {{endblock}}</title>
+    <title>{%block title%} Homepage {%endblock%}</title>
 </head>
 <body>
 
@@ -28,16 +28,24 @@
     </ul>
     <a href="/add_user" class='other_page_link'>Add a new user</a>
     
+    
     <h2>Recent posts:</h2>
-    <ol>
+    <ul>
         {% for post in posts %}
         <li><a href="/post_details/{{post.id}}" class="list">{{post.title}}</a></li>
         {% endfor %}
-    </ol>
-    <!-- <a href="/all_posts" class='other_page_link'>See all posts</a> -->
-    <!-- <br>
-    <a href="/add_post" class='other_page_link'>Add a new post</a> -->
+    </ul>
+    <a href="/all_posts" class='other_page_link'>View all posts</a>
     
+    
+    <h2>Tags:</h2>
+    <ul>
+        {% for t in tags %}
+        <li><a href="/tags/{{t.id}}" class="list">{{t.name}} </a></li>
+        {% endfor%}
+    </ul>
+    <a href="/tags/new" class='other_page_link'>Create a new tag</a>
+
     {% endblock %}
 
     <script src="/static/app.js"></script>

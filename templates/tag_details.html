@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %} Tags {% endblock %}}
+
+{% block content %}
+
+<h2>{{tag.name}} posts</h2>
+
+<ol>
+    {% for post in tag.posts %}
+    <li><a href="/post_details/{{post.id}}"  class="list">{{ post.title }}</a></li>
+    {% endfor %}
+</ol>
+
+<form>
+    <button formmethod='GET'
+            formaction="/tags/{{tag.id}}/edit"
+            class='edit_delete'>
+            Edit
+</button>
+
+    <button formmethod="POST"
+            formaction="/tags/{{tag.id}}/delete"
+            id = 'deleteBTN'
+            class="edit_delete">
+            Delete
+    </button>
+</form>
+
+<br>
+<a href="/" class='other_page_link'>Back to homepage</a>
+
+{% endblock %}
+

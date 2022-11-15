@@ -1,6 +1,6 @@
 """Seed file to make sample data for employees database"""
 
-from models import User, Post, db
+from models import User, Post, db, Tag, PostTag
 from app import app
 
 db.drop_all()
@@ -14,12 +14,16 @@ p1 = Post(post_user='Bunny Boy', title="Where's my dinner?", content="I'm always
 p2 = Post(post_user='Solid Blackheart', title="I want a nap.", content="I'm always sleepy.")
 p3 = Post(post_user='King Boom Boom', title="Where's my new guitar?", content="I ordered it last week!")
 
-db.session.add_all([u1, u2, u3])
+t1 = Tag(name='Sweet')
+t2 = Tag(name='Funny')
+t3 = Tag(name='Serious')
+t4 = Tag(name='Educational')
+t5 = Tag(name='Adventure')
+
+db.session.add_all([u1, u2, u3, p1, p2, p3, t1, t2, t3, t4, t5])
 db.session.commit()
 
-db.session.add_all([p1, p2, p3])
-db.session.commit()
 
 # options to run file:
 # ipython: %run seed.py
-# python seed.py
+# python3 seed.py

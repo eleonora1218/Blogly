@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %} Edit Tag {% endblock %}}
+
+{% block content %}
+
+<h2>Edit {{tag.name}} tag</h2>
+
+<section class="messages">
+    {% for category, msg in get_flashed_messages(with_categories=true) %}
+        <p class="flash">{{msg}}</p>
+    {% endfor %}
+</section>
+
+<form method="POST" id="add_user_form">
+    <input type="text" name='name' value="{{tag.name}}">
+    <br>
+    <button class="Add_btn">Submit changes</button>
+</form>
+
+<br>
+<a href="/tags/{{tag.id}}" class='other_page_link'>Back to {{tag.name}} tag details</a>
+<br>
+<a href="/" class='other_page_link'>Back to homepage</a>
+
+{% endblock %}
+

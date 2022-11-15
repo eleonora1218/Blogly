@@ -1,38 +1,39 @@
 {% extends 'base.html' %} 
-{% block title %} Posts {% endblock %} 
+{% block title %} {{post.title}} {% endblock %} 
 
 {% block content %}
 
 <div class="single_postbox">
+
 <h2>{{post.title}}</h2>
-<!-- <h3>By {{post.user.user_name}}</h3> -->
 <a href="/{{user.id}}"><h3 class='username'>By {{post.user.user_name}}</h3></a>
 <p id="postdate">Posted: {{post.display_date}}</p>
 
-
+{% if post.tags %}
+    {% for tag in post.tags %}
+    <a href="/tags/{{ tag.id }}"><i class="post_tags">{{tag.name}}</i></a>
+    {% endfor %}
+{% endif %}
 
 <blockquote>{{post.content}}</blockquote>
 
 <form>
     <button formmethod='GET'
-    formaction="/post_details/{{post.id}}/edit_post"
-    class='edit_delete'>
-    Edit
-</button>
+            formaction="/post_details/{{post.id}}/edit_post"
+            class='edit_delete'>
+            Edit
+    </button>
 
-<button formmethod="POST"
-formaction="/post_details/{{post.id}}/delete"
-class="edit_delete">
-Delete
-</button>
+    <button formmethod="POST"
+            formaction="/post_details/{{post.id}}/delete"
+            class="edit_delete">
+            Delete
+    </button>
 </form>
 </div>
 
-<!-- <a href="/{{user.id}}" class='other_page_link'>Go to {{post.user.user_name}}'s profile</a>
-<br> -->
 <a href="/{{user.id}}/user_posts" class='other_page_link'>View all {{post.user.user_name}}'s posts</a>
 <br>
 <a href="/" class='other_page_link'>Back to homepage</a>
-
 
 {% endblock %} 

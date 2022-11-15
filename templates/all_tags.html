@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} All Tags {% endblock %}}
+
+{% block content %}
+
+<h2>Tags:</h2>
+<ul>
+    {% for t in tags %}
+    <li><a href="/tags/{{t.id}}" class="list">{{t.name}} </a></li>
+    {% endfor%}
+</ul>
+<a href="/tags/new" class='other_page_link'>Create a new tag</a>
+<br>
+<a href="/" class='other_page_link'>Back to homepage</a>
+
+{% endblock %}
+

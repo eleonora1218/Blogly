@@ -3,16 +3,17 @@
 
 {% block content %}
 
-
 <h2>All posts:</h2>
 
-<ol>
+<ul>
     {% for post in posts %}
+    <div class="all_posts_div">
     <li><a href="/post_details/{{post.id}}" class="list">{{post.title}}</a></li>
+    <p id="allposts_postdate">Posted: {{post.display_date}}</p>
+    </div>
     {% endfor %}
-</ol>
-<!-- <a href="/add_post" class='other_page_link'>Add a new post</a> -->
-<!-- <br> -->
+</ul>
+
 <a href="/" class='other_page_link'>Back to homepage</a>
 
 

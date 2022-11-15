@@ -1,5 +1,5 @@
 {% extends 'base.html' %} 
-{% block title %} New User {% endblock %} 
+{% block title %} Create New User {% endblock %} 
 
 {% block content %}
 
@@ -11,14 +11,14 @@
     {% endfor %}
 </section>
 
-<form action="/" method="POST" id="add_user_form">
+<form method="POST" id="add_user_form">
     <input type="text" name='user_name' placeholder="Username">
     <br>    
     <input type="text" name='first_name' placeholder="First name">
     <br>
     <input type="text" name='last_name' placeholder="Last name">
     <br>
-    <input id='input3' type="text" name='profile_img' placeholder="Profile picture">
+    <input id='input3' type="text" name='profile_img' placeholder="Profile picture URL link">
     <br>
     <button class="Add_btn">Add user</button>
 </form>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %} 
-{% block title %} Edit your profile {% endblock %} 
+{% block title %} Edit Your Post {% endblock %} 
 
 {% block content %}
 
@@ -16,9 +16,29 @@
     <br>    
     Content: <input id='input3' type="text" name='content' value="{{post.content}}">
     <br>
+
+    <div class="assign_post_tags">
+        <p class="assign_tag">Assign tags:</p>
+            {% for tag in tags %}
+            <div>
+                <input class="checkbox"
+                type="checkbox"
+                value="{{tag.id}}"
+                id="tag_{{tag.id}}"
+                {% if tag in post.tags %}checked{% endif %}
+                name="tags">
+                <label class="form-check-label" for="tag_{{tag.id}}">
+                    <p>{{tag.name}}</p>
+                </label>
+            </div>
+            {% endfor %}
+    </div>
+
     <button class="Add_btn">Submit changes</button>
 </form>
 
+<a href="/{{user.id}}/user_posts" class='other_page_link'>Back to {{user.user_name}}'s posts</a>
+<br>
 <a href="/" class='other_page_link'>Back to homepage</a>
 
 {% endblock %}

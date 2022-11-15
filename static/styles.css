@@ -3,7 +3,7 @@
 body {
     /* Unsplash freesource image */
     background-image: url('https://images.unsplash.com/photo-1586075010923-2dd4570fb338?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80');
-    margin: 10px;
+    margin: 10px 10px 100px 10px;
 }
 
 h1 {
@@ -23,7 +23,6 @@ a {
 .letter:nth-of-type(even) {
     border: rgb(180, 85, 74) 3px solid;
 }
-
 .letter:nth-of-type(odd) {
     border: rgb(53, 75, 56) 3px solid;
 }
@@ -41,7 +40,6 @@ h3 {
 .other_page_link {
     color: rgb(180, 85, 74);
 }
-
 .other_page_link:hover {
     color: rgb(53, 75, 56);
 }
@@ -99,6 +97,24 @@ button:hover {
     color: azure;
 }
 
+label p {
+    display: inline;
+}
+
+.assign_post_tags {
+    margin-left: 10px;
+}
+.assign_tag {
+    margin: auto auto 5px auto;
+}
+.checkbox {
+    margin: auto;
+}
+
+ul p #postdate {
+    margin: -1px auto 5px auto;
+}
+
 /* User details page */
 
 .profile_img {
@@ -131,17 +147,25 @@ img {
 
 /* Post details */
 
-blockquote, p {
-    color:rgb(53, 75, 56);
-}
-
-#add_post_form {
+blockquote, p, #add_post_form {
     color:rgb(53, 75, 56);
 }
 
 #postdate {
     font-size: 12px;
-    margin-top: -5px;
+    margin: -5px 0 auto 0;
+}
+
+#allposts_postdate {
+    font-size: 12px;
+    margin: -2px 0 5px 0;
+}
+
+.all_posts_div {
+    border-bottom: 1px rgb(180, 85, 74) solid;
+    margin: auto auto 10px 0;
+    padding: 5px 0 0 0;
+    width: fit-content;
 }
 
 .postbox {
@@ -165,4 +189,20 @@ blockquote, p {
 
 .username:hover {
     color:rgb(180, 85, 74);
+}
+
+a p {
+    font-size: 20px;
+}
+
+/* tags */
+
+.post_tags {
+    border: solid 1px rgb(180, 85, 74);
+    border-radius: 6px;
+    display: inline;
+    margin-right: 2px;
+    padding: 0 2px 0 2px;
+    font-size: 12px;
+    color:rgb(53, 75, 56);
 }

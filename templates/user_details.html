@@ -6,24 +6,25 @@
     <div class="user_details_info">
         <h2>{{user.user_name}}</h2>
         <h3>{{user.first_name}} {{user.last_name}}</h3>
+
         <form>
             <button formmethod='GET'
                     formaction="/{{user.id}}/edit"
                     class='edit_delete'>
-                Edit
-        </button>
+                    Edit
+            </button>
         
             <button formmethod="POST"
                     formaction="/{{user.id}}/delete"
                     id = 'deleteBTN'
                     class="edit_delete">
-                Delete
+                    Delete
             </button>
         </form>
+
         <img src="{{user.profile_img}}" class='profile_img'/>
     </div>
         
-
     <br>
     <a href="/{{user.id}}/user_posts" class='other_page_link'>See {{user.user_name}}'s posts</a>
     <br>
